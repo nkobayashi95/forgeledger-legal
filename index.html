@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ForgeLedger — Shoe. Bill. Done.</title>
+<meta name="description" content="Business management built for farriers. Schedule appointments, send invoices, and get paid on the spot — all from your phone.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --navy-deep: #081320;
+    --copper: #B87333;
+    --copper-light: #D08F4F;
+    --ember: #E8742C;
+    --steel: #A6ADB5;
+    --slate: #384452;
+    --slate-light: rgba(56, 68, 82, 0.35);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: #EAEDEF;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  .display {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(13, 27, 42, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(166, 173, 181, 0.12);
+  }
+
+  nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: 0.02em;
+  }
+
+  .brand-mark {
+    width: 30px;
+    height: 30px;
+    display: block;
+    border-radius: 7px;
+  }
+
+  nav .links {
+    display: flex;
+    gap: 32px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--steel);
+  }
+
+  nav .links a:hover { color: #fff; }
+
+  .nav-cta {
+    background: var(--copper);
+    color: var(--navy);
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  @media (max-width: 720px) {
+    nav .links { display: none; }
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    padding: 100px 0 80px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 500px;
+    background: radial-gradient(ellipse at center, rgba(232, 116, 44, 0.16) 0%, rgba(232, 116, 44, 0) 65%);
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--copper-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .eyebrow svg { width: 14px; height: 14px; }
+
+  .strike-rule {
+    width: 64px;
+    height: 4px;
+    background: var(--copper);
+    margin: 0 auto 30px;
+    border-radius: 2px;
+    transform-origin: left center;
+    animation: strike 0.7s cubic-bezier(.2,1.4,.4,1) 0.15s both;
+  }
+
+  @keyframes strike {
+    0%   { transform: scaleX(0) translateY(-40px); opacity: 0; }
+    60%  { transform: scaleX(1.15) translateY(0); opacity: 1; }
+    100% { transform: scaleX(1) translateY(0); opacity: 1; }
+  }
+
+  h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(40px, 7vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    animation: settle 0.6s ease 0.35s both;
+  }
+
+  h1 .accent { color: var(--copper); }
+
+  @keyframes settle {
+    0%   { opacity: 0; transform: translateY(14px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .sub {
+    max-width: 540px;
+    margin: 0 auto 40px;
+    font-size: 18px;
+    color: var(--steel);
+    animation: settle 0.6s ease 0.5s both;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: settle 0.6s ease 0.62s both;
+  }
+
+  .btn-primary {
+    background: var(--copper);
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 14px 26px;
+    border-radius: 10px;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--copper-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    border: 1px solid rgba(166, 173, 181, 0.3);
+    color: #EAEDEF;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 14px 26px;
+    border-radius: 10px;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--copper);
+    background: rgba(184, 115, 51, 0.08);
+  }
+
+  /* ===== ANVIL MOCKUP ===== */
+  .mock-wrap {
+    margin-top: 64px;
+    display: flex;
+    justify-content: center;
+    animation: settle 0.7s ease 0.78s both;
+  }
+
+  .mock {
+    width: min(560px, 88vw);
+    background: linear-gradient(160deg, #15263A, #0E1D2C);
+    border: 1px solid rgba(166, 173, 181, 0.15);
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6);
+    text-align: left;
+  }
+
+  .mock-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(166, 173, 181, 0.12);
+  }
+
+  .mock-head .num { font-size: 12px; color: var(--steel); }
+  .mock-head .amt { font-family: 'Oswald', sans-serif; font-size: 26px; font-weight: 600; }
+
+  .mock-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 9px 0;
+    color: #D8DCDF;
+    border-bottom: 1px solid rgba(166, 173, 181, 0.08);
+  }
+
+  .mock-row:last-of-type { border-bottom: none; }
+  .mock-row span:last-child { color: var(--steel); }
+
+  .mock-pill {
+    margin-top: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(34, 153, 92, 0.15);
+    color: #4ED48A;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 20px;
+  }
+
+  .mock-pill::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4ED48A;
+  }
+
+  /* ===== HOW IT WORKS ===== */
+  .section {
+    padding: 96px 0;
+  }
+
+  .section-head {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .section-tag {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--copper-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .section-head h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 40px);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  @media (max-width: 800px) {
+    .steps { grid-template-columns: 1fr; gap: 20px; }
+  }
+
+  .step {
+    background: var(--slate-light);
+    border: 1px solid rgba(166, 173, 181, 0.1);
+    border-radius: 16px;
+    padding: 30px 26px;
+    position: relative;
+  }
+
+  .step .stage {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--copper);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .step h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: 0.01em;
+  }
+
+  .step p {
+    font-size: 15px;
+    color: var(--steel);
+  }
+
+  .step-connector {
+    display: none;
+  }
+
+  /* ===== FEATURE GRID ===== */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(166, 173, 181, 0.1);
+    border: 1px solid rgba(166, 173, 181, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 720px) {
+    .features { grid-template-columns: 1fr; }
+  }
+
+  .feature {
+    background: var(--navy);
+    padding: 32px 30px;
+  }
+
+  .feature h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .feature h3 .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ember);
+    flex-shrink: 0;
+  }
+
+  .feature p {
+    font-size: 14px;
+    color: var(--steel);
+  }
+
+  /* ===== CTA BAND ===== */
+  .cta-band {
+    text-align: center;
+    padding: 96px 0;
+    position: relative;
+  }
+
+  .cta-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(232, 116, 44, 0.10) 0%, rgba(232, 116, 44, 0) 60%);
+    pointer-events: none;
+  }
+
+  .cta-band h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(30px, 5vw, 48px);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    position: relative;
+  }
+
+  .cta-band p {
+    color: var(--steel);
+    font-size: 16px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    border-top: 1px solid rgba(166, 173, 181, 0.12);
+    padding: 40px 0;
+  }
+
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  footer .brand { font-size: 15px; }
+
+  footer .foot-links {
+    display: flex;
+    gap: 24px;
+    font-size: 14px;
+    color: var(--steel);
+  }
+
+  footer .foot-links a:hover { color: #fff; }
+
+  footer .copyright {
+    width: 100%;
+    margin-top: 24px;
+    font-size: 13px;
+    color: rgba(166, 173, 181, 0.6);
+    text-align: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .strike-rule, h1, .sub, .hero-ctas, .mock-wrap {
+      animation: none !important;
+    }
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--copper-light);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="brand">
+      <img src="forgeledger-icon.png" alt="" class="brand-mark">
+      ForgeLedger
+    </a>
+    <div class="links">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+    <a href="#" class="nav-cta">Get the app</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <div class="eyebrow">
+      Built for farriers, by people who watched them work
+    </div>
+    <div class="strike-rule"></div>
+    <h1>Shoe. Bill. <span class="accent">Done.</span></h1>
+    <p class="sub">ForgeLedger runs your client list, your schedule, and your invoices from the truck, the barn, or the driveway — so the only thing you're carrying out of an appointment is the next one.</p>
+    <div class="hero-ctas">
+      <a href="#" class="btn-primary">Get the app</a>
+      <a href="#how" class="btn-ghost">See how it works</a>
+    </div>
+
+    <div class="mock-wrap">
+      <div class="mock">
+        <div class="mock-head">
+          <div>
+            <div class="num">INVOICE · INV-0042</div>
+            <div style="font-size:13px; color:#D8DCDF; margin-top:4px;">Bella · Hartmann Farm</div>
+          </div>
+          <div class="amt">$140.00</div>
+        </div>
+        <div class="mock-row"><span>Full Set Steel</span><span>$120.00</span></div>
+        <div class="mock-row"><span>Farm Call</span><span>$20.00</span></div>
+        <div class="mock-pill">Paid by card on site</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">The day, in order</div>
+      <h2>Schedule it. Shoe it. Get paid.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="stage">Before the call</div>
+        <h3>Schedule</h3>
+        <p>Book the appointment, see the next due date auto-suggested from each horse's cycle, and get turn-by-turn directions to the barn.</p>
+      </div>
+      <div class="step">
+        <div class="stage">At the barn</div>
+        <h3>Invoice</h3>
+        <p>Tap your saved prices to build the invoice in seconds — full sets, resets, farm calls, whatever the visit calls for.</p>
+      </div>
+      <div class="step">
+        <div class="stage">Before you leave</div>
+        <h3>Get paid</h3>
+        <p>Card, cash, or check — collect payment on the spot. Card payments land straight in your own bank account.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">What's in the kit</div>
+      <h2>Everything but the apron</h2>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <h3><span class="dot"></span>Client &amp; horse records</h3>
+        <p>Every horse's shoe type, barn address, and service history, organized under each client.</p>
+      </div>
+      <div class="feature">
+        <h3><span class="dot"></span>Smart scheduling</h3>
+        <p>Day, week, and month views with next-due dates calculated from each horse's trim cycle.</p>
+      </div>
+      <div class="feature">
+        <h3><span class="dot"></span>On-site payments</h3>
+        <p>Charge a card, mark cash or check, and watch the invoice settle before you're back in the truck.</p>
+      </div>
+      <div class="feature">
+        <h3><span class="dot"></span>Automatic texts</h3>
+        <p>Appointment reminders and running-late updates go out without you touching your phone twice.</p>
+      </div>
+      <div class="feature">
+        <h3><span class="dot"></span>Drive-time alerts</h3>
+        <p>ForgeLedger watches the clock against the drive and nudges you before you're behind.</p>
+      </div>
+      <div class="feature">
+        <h3><span class="dot"></span>Your prices, saved</h3>
+        <p>Set your rates once. Every invoice after that is two taps, not two minutes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Run your business<br>from the worksite.</h2>
+    <p>No office. No spreadsheets. Just the next horse.</p>
+    <a href="#" class="btn-primary">Get the app</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="#" class="brand">ForgeLedger</a>
+    <div class="foot-links">
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="mailto:support@forgeledgerapp.com">Support</a>
+    </div>
+    <div class="copyright">© 2026 ForgeLedger. All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>
