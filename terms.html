@@ -213,12 +213,26 @@
     </ul>
 
     <h2>7. Client Data and SMS Messaging</h2>
+
+    <div class="highlight">
+      <strong>How SMS consent works:</strong> ForgeLedger uses mobile-originated (MO) opt-in. When you add a client's phone number, they automatically receive a one-time text asking them to reply <strong>Y</strong> to consent to receiving appointment messages. No further messages are sent until the client confirms by replying Y.
+    </div>
+
+    <p><strong>Message types:</strong> Appointment reminders, running-late notifications, and estimated arrival time (ETA) updates. No marketing or promotional messages are sent.</p>
+    <p><strong>Message frequency:</strong> Varies based on appointment activity. Typically 1–3 messages per scheduled appointment.</p>
+    <p><strong>Message and data rates may apply.</strong> Standard carrier rates apply to all messages sent and received.</p>
+    <p><strong>To opt out:</strong> Reply <strong>STOP</strong> to any message at any time. One confirmation message will be sent and no further messages will follow.</p>
+    <p><strong>To opt back in:</strong> Reply <strong>START</strong> or <strong>UNSTOP</strong> at any time.</p>
+    <p><strong>For help:</strong> Reply <strong>HELP</strong> or contact <a href="mailto:support@forgeledgerapp.com">support@forgeledgerapp.com</a>.</p>
+    <p>Carriers are not liable for delayed or undelivered messages. We use Twilio to deliver SMS messages.</p>
+
     <p>When you enter client information and use the SMS messaging features, you represent and warrant that:</p>
     <ul>
-        <li>You have obtained appropriate consent from your clients to store their contact information</li>
-        <li>You have obtained consent from your clients to receive text messages from you</li>
+        <li>You have a legitimate existing business relationship with the client</li>
+        <li>The client has received and responded Y to the opt-in consent request before any reminder messages are sent</li>
         <li>You will comply with all applicable laws regarding commercial text messaging, including the TCPA</li>
         <li>You will promptly honor any opt-out requests from your clients</li>
+        <li>You will use the messaging feature only for legitimate appointment-related communications</li>
     </ul>
     <p>You are solely responsible for the content of messages sent through ForgeLedger and for compliance with applicable messaging laws.</p>
 
