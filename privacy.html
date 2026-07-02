@@ -115,6 +115,13 @@
             border-bottom: 1px solid #384452;
         }
 
+        h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin: 20px 0 8px;
+        }
+
         p { margin-bottom: 16px; color: #D0D0D0; }
 
         ul {
@@ -174,7 +181,7 @@
 
 <div class="container">
     <h1>Privacy Policy</h1>
-    <p class="effective">Effective Date: June 14, 2026 &nbsp;&middot;&nbsp; Last Updated: June 14, 2026</p>
+    <p class="effective">Effective Date: June 14, 2026 &nbsp;&middot;&nbsp; Last Updated: July 2, 2026</p>
 
     <div class="highlight">
         ForgeLedger is built for working farriers. We collect only what's necessary to run your business, we never sell your data, and we never will.
@@ -236,6 +243,9 @@
         <li>You will use the messaging feature only for legitimate business communications</li>
     </ul>
     <p>Message and data rates may apply to your clients. We use Twilio to deliver SMS messages.</p>
+
+    <h3>How We Collect Client Consent</h3>
+    <p>When a farrier adds a new client in ForgeLedger, the app automatically sends that client an opt-in SMS message asking them to confirm consent by replying Y. No appointment messages are sent to a client until they have replied Y to confirm. Clients may opt out at any time by replying STOP, and no further messages will be sent. This consent process is handled automatically by ForgeLedger on the farrier's behalf.</p>
 
     <h2>5. Data Storage and Security</h2>
     <p>Your data is stored securely using Supabase, a PostgreSQL-based cloud database with the following protections:</p>
